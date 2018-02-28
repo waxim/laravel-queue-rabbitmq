@@ -17,7 +17,11 @@
     "illuminate/database": "5.6.*",
     "illuminate/support": "5.6.*",
     "illuminate/queue": "5.6.*",
-    "enqueue/amqp-lib": "0.8.15",
+    "php-amqplib/php-amqplib": "^2.7",
+    "queue-interop/queue-interop": "^0.6",
+    "queue-interop/amqp-interop": "^0.7",
+    "enqueue/amqp-tools": "^0.8.5"
+    "enqueue/amqp-lib": "0.8.21",
     "queue-interop/amqp-interop": "^0.7"
   },
   "require-dev": {
