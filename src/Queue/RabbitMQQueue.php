@@ -244,4 +244,30 @@ class RabbitMQQueue extends Queue implements QueueContract
         // Sleep so that we don't flood the log file
         sleep($this->sleepOnError);
     }
+
+    /**
+     * Override create payload.
+     * 
+     * @inheritDoc
+     */
+    protected function createPayload($job, $data = '', $queue = null)
+    {
+        if (is_object($job)) {
+            $payload = json_encode([
+                'timeout' => isset($job->timeout) ? $job->timeout : 60,
+                'maxTries' => isset($job->tries) ? $job->tries : 3,
+                'job' => 'Illuminate\Queue\CallQueuedHandler@call',
+                'data' => [
+                    'commandName' => get_class($job),
+                    'command' => serialize(clone $job),
+                ],
+            ]);
+        } else {
+            $payload = json_encode($this->createPlainPayload($job, $data));
+        }
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new InvalidArgumentException('Unable to create payload: '.json_last_error_msg());
+        }
+        return $payload;
+    }
 }
