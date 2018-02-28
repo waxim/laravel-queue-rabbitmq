@@ -1,11 +1,15 @@
 {
-  "name": "vladimir-yuldashev/laravel-queue-rabbitmq",
+  "name": "labour/laravel-queue-rabbitmq",
   "description": "RabbitMQ driver for Laravel Queue",
   "license": "MIT",
   "authors": [
     {
       "name": "Vladimir Yuldashev",
       "email": "misterio92@gmail.com"
+    },
+    {
+      "name": "Alan Cole",
+      "email": "alan_cole@labour.org.uk"
     }
   ],
   "require": {
